@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const multer_1 = require("../Config/multer");
+const postController_1 = require("../Controller/postController");
+const post = (0, express_1.Router)();
+post.route("/:userID/create-post").post(multer_1.Image, postController_1.createPost);
+post.get("/get-all-post", postController_1.readPost);
+post.get("/:userID/get-post", postController_1.readUsersPost);
+post.route("/:userID/:postID/vote-post").post(postController_1.voteUserPost);
+post.route("/:userID/:postID/:likeID/unvote-post").post(postController_1.unVoteUserPost);
+post.route("/:postID/view-vote-post").get(postController_1.viewVotedPost);
+exports.default = post;
