@@ -10,17 +10,17 @@ const app: Application = express();
 mainApp(app);
 
 const server = app.listen(port || process.env.PORT, () => {
-  dbConfig();
   console.log();
+  dbConfig();
 });
 
 process.on("uncaughtException", (error: any) => {
-  console.log("uncaughtException");
+  console.log("uncaughtException", error);
   process.exit(1);
 });
 
 process.on("unhandledRejection", (reason: any) => {
-  console.log("unhandledRejection");
+  console.log("unhandledRejection", reason);
   server.close(() => {
     process.exit(1);
   });

@@ -12,15 +12,15 @@ const port = parseInt(process.env.PORT);
 const app = (0, express_1.default)();
 (0, mainApp_1.mainApp)(app);
 const server = app.listen(port || process.env.PORT, () => {
-    (0, database_1.dbConfig)();
     console.log();
+    (0, database_1.dbConfig)();
 });
 process.on("uncaughtException", (error) => {
-    console.log("uncaughtException");
+    console.log("uncaughtException", error);
     process.exit(1);
 });
 process.on("unhandledRejection", (reason) => {
-    console.log("unhandledRejection");
+    console.log("unhandledRejection", reason);
     server.close(() => {
         process.exit(1);
     });
